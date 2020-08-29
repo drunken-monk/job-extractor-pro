@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template
 from python_files.extractor.indeed import get_jobs_indeed
 from python_files.extractor.so import get_jobs_so
-from python_files.module.exporter import expert_to_zip
+from python_files.modules.exporter import expert_to_zip
 
 os.system("clear")
 
