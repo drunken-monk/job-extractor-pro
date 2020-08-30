@@ -1,17 +1,13 @@
 import os
-from flask import Flask, render_template
-from python_files.extractor.indeed import get_jobs_indeed
-from python_files.extractor.so import get_jobs_so
+from flask import Flask, render_template, redirect, request
+#from python_files.extractor.indeed import get_jobs_indeed
+#from python_files.extractor.so import get_jobs_so
+from python_files.extractor.site_integration import get_jobs
 from python_files.modules.exporter import expert_to_zip
+
 
 os.system("clear")
 
-dict_idx_sites = {
-  0: ["indeed", get_jobs_indeed],
-  1: ["stack overflow", get_jobs_so]
-}
-
-DESIRE_KEYWORD = "AI"
 DESIRE_PAGES = 1
 SELECTED_SITES = [0, 1]
 
@@ -37,7 +33,15 @@ def archive():
 
 @app.route("/report")
 def report():
-  return "This is report"
+  keyword = request.args.get("keyword")
+  print(keyword)
+
+  if keyword:
+    keyword = keyword.lower()
+    jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+  else:
+    return redirect("/")
+  return render_template("report.html", searchBy=keyword, length=len(jobs["all_jobs"]))
 
 @app.route("/export")
 def exporter():
