@@ -73,3 +73,12 @@ h3:not(.margin-immunity){
   font-weight: 700;
   margin-bottom: 25px;
 }
+
+div#loading {
+  width: 35px;
+  height: 35px;
+  display: none;
+  background: url(/static/images/loading.gif) no-repeat;
+  cursor: wait; 
+  z-index: 2;
+}

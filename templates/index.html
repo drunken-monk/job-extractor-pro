@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job-Extractor-Pro</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
 </head>
 <body class="test">
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
-  <div class="content">
+
+  <div id="loading"></div>
+
+  <div id="content" class="content">
     <main class="index__main">
       <h1>Job Extractor Pro</h1>
       <h3>Please enter job keyword then click the button.</h3>
         <div>
           <form action="/report" method="GET" class="index__box__form">
-            <input type="text", placeholder="Enter job keyword..", name="keyword"/>
-            <input type="submit", value="search"/>
+            <input type="text" placeholder="Enter job keyword.." name="keyword"/>
+            <input type="submit" value="search" onclick="loading();"/>
           </form>
         </div>
     </main>
   </div>
+  
+  <script type="text/javascript">// <![CDATA[
+           function loading(){
+               $("#loading").show();
+               //$("#content").hide();       
+           }
+// ]]></script>
+  
 </body>
 </html>

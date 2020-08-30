@@ -47,4 +47,5 @@ def report():
 def exporter():
   return "This is exporter"
 
+#os.system("pkill -9 python")
 app.run(host="0.0.0.0")
