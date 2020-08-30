@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job-Extractor-Pro</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/report.css') }}">
 </head>
-<body class="test">
+<body>
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
   <div class="content">
-    <main class="index__main">
-      <h1>Extractor Result</h1>
-      <h3>{{length}} results were searched with a keyword [{{searchBy}}]</h3>
-        <div>
-          <form action="/report" method="GET" class="index__box__form">
-            <input type="text", placeholder="Enter job keyword..", name="keyword"/>
-            <input type="submit", value="search"/>
-          </form>
+    <div class="index__main">
+      <header class="report__header">
+        <div class="center-element">
+          <h2 class="margin-immunity">Extract Report</h2>
         </div>
-    </main>
+        <div class="header__cluster-btn">
+          <button type="button" onclick="location.href='/export'" class="btn">
+            <i class="fas fa-file-csv fa-lg btn-icon"></i>
+            <span>export to .csv</span>
+          </button>
+        </div>
+      </header>
+      <h3>{{length}} results were searched with a keyword [{{searchBy}}]</h3>
+      <main>
+          
+      </main>
+    </div>
   </div>
+  <script src="https://kit.fontawesome.com/6145b85787.js" crossorigin="anonymous"></script>
 </body>
 </html>

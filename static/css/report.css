@@ -1,0 +1,57 @@
+.bg {
+  background-image: linear-gradient(-60deg, #999999 50%, #777777 50%);
+}
+
+.content {
+  width:75%;
+}
+
+.btn{
+  font-size: 18px;
+}
+
+.btn-icon{
+  margin-right: 5px;
+}
+
+.btn {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: rgba(119, 119, 119, 1);
+  background-image: linear-gradient(to top left,
+                                    rgba(0, 0, 0, .2),
+                                    rgba(0, 0, 0, .2) 30%,
+                                    rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+              inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.btn:hover {
+  background-color: rgba(119, 119, 119, 1);
+}
+
+.btn:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+              inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.center-element{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.report__header{
+  background-color: tomato;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

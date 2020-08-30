@@ -9,7 +9,7 @@ from python_files.modules.exporter import expert_to_zip
 os.system("clear")
 
 DESIRE_PAGES = 1
-SELECTED_SITES = [0, 1]
+SELECTED_SITES = [0]
 
 jobs = []
 '''
