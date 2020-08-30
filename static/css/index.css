@@ -1,0 +1,127 @@
+html {
+  height:100%;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #777777 50%, #333333 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+  
+.bg3 {
+  animation-duration:5s;
+}
+
+.content {
+  background-color:rgba(45,45,45,8);
+  border-radius:.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding:10vmin;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+body{
+  background-color: #303030;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+}
+
+h1{
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 25px;
+
+  font-family:monospace;
+}
+
+h2{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+h3{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.index__box__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px;
+}
+  
+.index__box__form input{
+  background-color: snow;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+
+.index__box__form input[type="text"] {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 430px;
+}
+  
+.index__box__form input::placeholder {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.4);
+}
+  
+.index__box__form input[type="submit"] {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+  
+.index__box__form a {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 13px;
+}
+
+.index__main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

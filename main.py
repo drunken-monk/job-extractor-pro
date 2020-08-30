@@ -12,24 +12,28 @@ dict_idx_sites = {
 }
 
 DESIRE_KEYWORD = "AI"
-DESIRE_PAGES = None
+DESIRE_PAGES = 1
 SELECTED_SITES = [0, 1]
 
 jobs = []
-
+'''
 for site_idx in SELECTED_SITES:
   jobs += dict_idx_sites[site_idx][1](DESIRE_KEYWORD, DESIRE_PAGES)
-#jobs_indeed = get_jobs_indeed(DESIRE_KEYWORD, DESIRE_PAGES)
+
 
 for job in jobs:
   print(job,"\n")
-
+'''
 #======================================
 app = Flask("Job-Extractor-Pro")
 
 @app.route("/")
 def root():
   return render_template("index.html")
+
+@app.route("/archive")
+def archive():
+  return "This is archive"
 
 @app.route("/report")
 def report():

@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job-Extractor-Pro</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
 </head>
 <body class="test">
-    hello
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+  <div class="content">
+    <main class="index__main">
+      <h1>Job-Extractor-Pro</h1>
+      <h3>Please enter job keyword then click the button.</h3>
+        <div>
+          <form action="/archive" method="GET" class="index__box__form">
+            <input type="text", placeholder="Enter job keyword..", name="keyword"/>
+            <input type="submit", value="search"/>
+          </form>
+        </div>
+    </main>
+  </div>
 </body>
 </html>
