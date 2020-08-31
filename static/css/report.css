@@ -43,8 +43,7 @@ html {
   text-align:center;
   top:50%;
   transform:translate(-50%, -50%);
-  width: 75%;
-  height: 90%;
+  width: 95%;
   
 }
 
@@ -131,4 +130,12 @@ h3:not(.margin-immunity){
 
 header{
   margin-bottom: 20px;
+}
+
+section{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid #fff;
+  overflow: scroll;
 }

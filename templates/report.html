@@ -12,7 +12,6 @@
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
 
-
   <div class="content">
     <div class="index__main">
       <header class="report__header">
@@ -28,7 +27,20 @@
       </header>
       <h3>{{length}} results were searched with a keyword [{{searchBy}}]</h3>
       <main>
-          
+        <section>
+          <h4>Title</h4>
+          <h4>Company</h4>
+          <h4>Location</h4>
+          <h4>Salary</h4>
+          <h4>Link</h4>
+          {% for job in jobs %}
+            <span>{{job.title}}</span>
+            <span>{{job.company}}</span>
+            <span>{{job.location}}</span>
+            <span>{{job.salary}}</span>
+            <a href="{{job.link}}">Apply</a>
+          {% endfor %}
+        </section>
       </main>
     </div>
   </div>

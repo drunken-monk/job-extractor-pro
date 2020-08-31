@@ -12,14 +12,8 @@ DESIRE_PAGES = 1
 SELECTED_SITES = [0]
 
 jobs = []
-'''
-for site_idx in SELECTED_SITES:
-  jobs += dict_idx_sites[site_idx][1](DESIRE_KEYWORD, DESIRE_PAGES)
+caeche = {}
 
-
-for job in jobs:
-  print(job,"\n")
-'''
 #======================================
 app = Flask("Job-Extractor-Pro")
 
@@ -34,14 +28,20 @@ def archive():
 @app.route("/report")
 def report():
   keyword = request.args.get("keyword")
-  print(keyword)
-
   if keyword:
     keyword = keyword.lower()
-    jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+    from_caeche = caeche.get(keyword)
+    if from_caeche:
+      jobs = from_caeche
+    else:
+      jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
   else:
     return redirect("/")
-  return render_template("report.html", searchBy=keyword, length=len(jobs["all_jobs"]))
+  return render_template("report.html", 
+  searchBy=keyword,
+  length=len(jobs["all_jobs"]),
+  jobs=jobs["all_jobs"]
+  )
 
 @app.route("/export")
 def exporter():
