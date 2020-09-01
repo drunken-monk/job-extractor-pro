@@ -34,13 +34,13 @@
         <h4>Salary</h4>
         <h4>Link</h4>
       </section>
-      <section class="section__items">
+      <section class="section__items scrollable-box">
         {% for job in jobs %}
           <span>{{job.title}}</span>
           <span>{{job.company}}</span>
           <span>{{job.location}}</span>
           <span>{{job.salary}}</span>
-          <a href="{{job.link}}">Apply</a>
+          <a href="{{job.link}}" class="last-column">Apply</a>
         {% endfor %}
       </section>
     
