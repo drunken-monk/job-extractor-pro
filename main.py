@@ -56,6 +56,23 @@ def report():
   jobs=jobs["all_jobs"]
   )
 
+
+@app.route("/update")
+def update():
+  keyword = request.args.get("keyword")
+  if keyword:
+    keyword = keyword.lower()
+    jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+    db[keyword] = jobs
+  else:
+    return redirect("/")
+  return render_template("report.html", 
+  searchBy=keyword,
+  length=len(jobs["all_jobs"]),
+  jobs=jobs["all_jobs"]
+  )
+
+
 @app.route("/export-csv")
 def csv_exporter():
   keyword = request.args.get("keyword")

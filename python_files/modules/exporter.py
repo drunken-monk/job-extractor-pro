@@ -8,14 +8,18 @@ DIR_OUTPUT = "outputs"
 
 def export_to_zip(jobs):
   dir_name = f"{DIR_OUTPUT}/{create_output_name()}"
+  print(dir_name)
   if create_dir(dir_name):
     dict_csv = {}
     for job in jobs:
       source_site = job.get("site")
       print(source_site)
       if source_site not in dict_csv:
+        dict_csv[source_site] = {}
         dict_csv[source_site]["file"] = open(f"{dir_name}/{source_site}.csv", mode="w")
+        print(dict_csv[source_site])
         dict_csv[source_site]["writer"] = csv.writer(dict_csv[source_site]["file"])
+        print(dict_csv[source_site])
         dict_csv[source_site]["writer"].writerow(["site", "title", "company", "location", "salary", "link"])
       dict_csv[source_site]["writer"].writerow(list(job.values()))
     file = shutil.make_archive(dir_name, 'zip', dir_name)
@@ -30,7 +34,6 @@ def save_to_csv(jobs):
     writer = csv.writer(file)
     writer.writerow(["site", "title", "company", "location", "salary", "link"])
     for job in jobs:
-      print(job)
       writer.writerow(list(job.values()))
     return file
 
