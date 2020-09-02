@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request
 #from python_files.extractor.indeed import get_jobs_indeed
 #from python_files.extractor.so import get_jobs_so
 from python_files.extractor.site_integration import get_jobs
-from python_files.modules.exporter import save_to_csv, export_to_zip
+from python_files.modules.exporter import save_to_csv, export_to_zip, get_time_stamp
 
 
 os.system("clear")
@@ -44,16 +44,23 @@ def report():
     keyword = keyword.lower()
     from_db = db.get(keyword)
     if from_db:
-      jobs = from_db
+      time_stamp = from_db["time_stamp"]
+      #jobs_from_db = from_db["db_jobs"]
+      jobs = from_db["db_jobs"]
     else:
+      time_stamp = get_time_stamp()
       jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
-      db[keyword] = jobs
+      db[keyword] = {
+        "time_stamp": time_stamp,
+        "db_jobs": jobs
+      }
   else:
     return redirect("/")
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
-  jobs=jobs["all_jobs"]
+  jobs=jobs["all_jobs"],
+  time_stamp=time_stamp
   )
 
 
@@ -62,14 +69,20 @@ def update():
   keyword = request.args.get("keyword")
   if keyword:
     keyword = keyword.lower()
+    time_stamp = get_time_stamp()
     jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
-    db[keyword] = jobs
+    db[keyword] = {
+        "time_stamp": time_stamp,
+        "db_jobs": jobs
+      }
+    
   else:
     return redirect("/")
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
-  jobs=jobs["all_jobs"]
+  jobs=jobs["all_jobs"],
+  time_stamp=time_stamp
   )
 
 
@@ -77,7 +90,9 @@ def update():
 def csv_exporter():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
-    jobs = db.get(keyword)["all_jobs"]
+    from_db = db.get(keyword)
+    time_stamp = from_db["time_stamp"]
+    jobs = from_db["db_jobs"]["all_jobs"]
     save_to_csv(jobs)
     return "export csv"
   else:
@@ -87,8 +102,9 @@ def csv_exporter():
 def zip_exporter():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
-    jobs = db.get(keyword)["all_jobs"]
-    print("exist")
+    from_db = db.get(keyword)
+    time_stamp = from_db["time_stamp"]
+    jobs = from_db["db_jobs"]["all_jobs"]
     export_to_zip(jobs)
     return "export zip"
   else:

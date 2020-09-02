@@ -53,3 +53,10 @@ def create_output_name():
   now = datetime.datetime.now(pytz.timezone("Asia/Seoul")).strftime("%Y%m%d_%H%M%S")[2:]
 
   return f"{PREFIX}{now}"
+
+
+def get_time_stamp():
+  PREFIX = ""
+  now = datetime.datetime.now(pytz.timezone("Asia/Seoul")).strftime("%Y%m%d_%H%M%S")[2:]
+
+  return f"{PREFIX}{now}"
