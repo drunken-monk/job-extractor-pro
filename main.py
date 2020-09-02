@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, send_file
 #from python_files.extractor.indeed import get_jobs_indeed
 #from python_files.extractor.so import get_jobs_so
 from python_files.extractor.site_integration import get_jobs
@@ -93,8 +93,9 @@ def csv_exporter():
     from_db = db.get(keyword)
     time_stamp = from_db["time_stamp"]
     jobs = from_db["db_jobs"]["all_jobs"]
-    save_to_csv(jobs)
-    return "export csv"
+    file = save_to_csv(jobs)
+    print(file)
+    return send_file(file)
   else:
     return redirect("/")
 
@@ -105,8 +106,9 @@ def zip_exporter():
     from_db = db.get(keyword)
     time_stamp = from_db["time_stamp"]
     jobs = from_db["db_jobs"]["all_jobs"]
-    export_to_zip(jobs)
-    return "export zip"
+    file = export_to_zip(jobs)
+    print(file)
+    return send_file(file)
   else:
     print("not")
     return redirect("/")

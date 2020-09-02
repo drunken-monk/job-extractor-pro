@@ -23,19 +23,21 @@ def export_to_zip(jobs):
         dict_csv[source_site]["writer"].writerow(["site", "title", "company", "location", "salary", "link"])
       dict_csv[source_site]["writer"].writerow(list(job.values()))
     file = shutil.make_archive(dir_name, 'zip', dir_name)
-
+  
     return file
 
 
 def save_to_csv(jobs):
   if create_dir(DIR_OUTPUT):
-    dir_name = create_output_name()
-    file = open(f"{DIR_OUTPUT}/{dir_name}.csv", mode="w")
+    dir_name = f"{DIR_OUTPUT}/{create_output_name()}.csv"
+    print(dir_name)
+    file = open(f"{dir_name}", mode="w")
+    #file = open(f"{DIR_OUTPUT}/{dir_name}.csv", mode="w")
     writer = csv.writer(file)
     writer.writerow(["site", "title", "company", "location", "salary", "link"])
     for job in jobs:
       writer.writerow(list(job.values()))
-    return file
+    return dir_name
 
 
 def create_dir(dir_name):
