@@ -192,3 +192,9 @@ section{
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px rgba(45,45,45,8);
 }
+
+.report__main{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
