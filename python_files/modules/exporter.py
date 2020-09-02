@@ -9,11 +9,12 @@ def export_to_zip():
 def save_to_csv(jobs):
   file = open("jobs.csv", mode="w")
   writer = csv.writer(file)
-
+  print("before write")
   writer.writerow(["site", "title", "company", "location", "salary", "link"])
-
+  print("after write")
   for job in jobs:
-    writer.writerow(list(job.value()))
+    print(job)
+    writer.writerow(list(job.values()))
   return
 
 

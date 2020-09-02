@@ -42,11 +42,12 @@ def report():
   keyword = request.args.get("keyword")
   if keyword:
     keyword = keyword.lower()
-    from_caeche = db.get(keyword)
-    if from_caeche:
-      jobs = from_caeche
+    from_db = db.get(keyword)
+    if from_db:
+      jobs = from_db
     else:
       jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+      db[keyword] = jobs
   else:
     return redirect("/")
   return render_template("report.html", 
@@ -59,9 +60,9 @@ def report():
 def csv_exporter():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
-    jobs = db.get(keyword)
+    jobs = db.get(keyword)["all_jobs"]
     save_to_csv(jobs)
-    return "csv"
+    return "export csv"
   else:
     return redirect("/")
 
@@ -69,10 +70,12 @@ def csv_exporter():
 def zip_exporter():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
-    jobs = db.get(keyword)
+    jobs = db.get(keyword)["all_jobs"]
+    print("exist")
     export_to_zip(jobs)
-    return "zip"
+    return "export zip"
   else:
+    print("not")
     return redirect("/")
 
 #os.system("pkill -9 python")
