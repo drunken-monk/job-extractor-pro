@@ -1,18 +1,17 @@
 import os
 from flask import Flask, render_template, redirect, request, send_file
-#from python_files.extractor.indeed import get_jobs_indeed
-#from python_files.extractor.so import get_jobs_so
 from python_files.extractor.site_integration import get_jobs
-from python_files.modules.exporter import save_to_csv, export_to_zip, get_time_stamp
+from python_files.modules.exporter import save_to_csv, analyze_jobs_by_site, get_time_stamp
 
 
 os.system("clear")
 
 DESIRE_PAGES = 1
-SELECTED_SITES = [0]
+SELECTED_SITES = [0, 1]
 
 jobs = []
 db = {}
+labeled_db = {}
 
 def chk_keyword_in_db(keyword):
   try:
@@ -86,7 +85,7 @@ def update():
   )
 
 
-@app.route("/export-csv")
+@app.route("/export-all")
 def csv_exporter():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
@@ -99,16 +98,19 @@ def csv_exporter():
   else:
     return redirect("/")
 
-@app.route("/export-zip")
-def zip_exporter():
+@app.route("/export-selection")
+def export_selection():
   keyword = request.args.get("keyword")
   if chk_keyword_in_db(keyword):
     from_db = db.get(keyword)
     time_stamp = from_db["time_stamp"]
     jobs = from_db["db_jobs"]["all_jobs"]
-    file = export_to_zip(jobs)
-    print(file)
-    return send_file(file)
+    job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs)
+    return render_template("export.html",
+    keyword=keyword,
+    time_stamp=time_stamp,
+    job_statistic=job_statistic,
+  )
   else:
     print("not")
     return redirect("/")

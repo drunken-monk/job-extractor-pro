@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job-Extractor-Pro</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+</head>
+<body class="test">
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+
+  <div id="loading"></div>
+
+  <div id="content" class="content">
+    <main class="index__main">
+      <h1>Export Selections</h1>
+      <h3>select item want to export from result of {{keyword}}</h3>
+        <nav>
+          <ul>
+            {% for site, length in job_statistic.items() %}
+              <li class="export-item">
+                <span>{{site}}[{{length}} jobs]</span>
+                <button type="button" onclick="location.href='/export-all?keyword={{searchBy}}'" class="btn btn-not-last"">
+                  <i class="fas fa-file-csv fa-lg btn-icon"></i>
+                  <span>export to {{site}}.csv</span>
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+    </main>
+  </div>
+  
+  <script src="https://kit.fontawesome.com/6145b85787.js" crossorigin="anonymous"></script>
+  
+</body>
+</html>
