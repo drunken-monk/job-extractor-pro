@@ -3,28 +3,49 @@ import csv
 import datetime
 import pytz
 import shutil
+import zipfile
 
 DIR_OUTPUT = "outputs"
+
+def analyze_jobs_by_site(jobs):
+  job_statistic = {}
+  for job in jobs:
+    source_site = job.get("site")
+    if source_site not in job_statistic:
+      job_statistic[source_site] = 1
+    else:
+      job_statistic[source_site] = job_statistic.get(source_site) + 1
+  print(job_statistic)
+  return job_statistic
+
 
 def export_to_zip(jobs):
   dir_name = f"{DIR_OUTPUT}/{create_output_name()}"
   print(dir_name)
+  dict_csv = {}
   if create_dir(dir_name):
-    dict_csv = {}
     for job in jobs:
       source_site = job.get("site")
       print(source_site)
       if source_site not in dict_csv:
-        dict_csv[source_site] = {}
-        dict_csv[source_site]["file"] = open(f"{dir_name}/{source_site}.csv", mode="w")
-        print(dict_csv[source_site])
-        dict_csv[source_site]["writer"] = csv.writer(dict_csv[source_site]["file"])
-        print(dict_csv[source_site])
+        file = open(f"{dir_name}/{source_site}.csv", mode="w")
+        file = open(f"{dir_name}/README.txt", mode="w")
+        writer = csv.writer(file)
+        dict_csv[source_site] = {
+          "file": file,
+          "writer": writer,
+        }
         dict_csv[source_site]["writer"].writerow(["site", "title", "company", "location", "salary", "link"])
       dict_csv[source_site]["writer"].writerow(list(job.values()))
-    file = shutil.make_archive(dir_name, 'zip', dir_name)
-  
-    return file
+    
+    zf = zipfile.ZipFile(f"{DIR_OUTPUT}/{dir_name}.zip", "w")
+    for dirname, subdirs, files in os.walk(f"{dir_name}"):
+      zf.write(dirname)
+      for filename in files:
+        zf.write(os.path.join(dirname, filename))
+    zf.close()
+    print(zf)
+    return zf
 
 
 def save_to_csv(jobs):
