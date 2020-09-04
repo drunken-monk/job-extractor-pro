@@ -25,6 +25,7 @@ def chk_keyword_in_db(keyword):
   except:
     return False
 
+
 #======================================
 app = Flask("Job-Extractor-Pro")
 
@@ -32,9 +33,6 @@ app = Flask("Job-Extractor-Pro")
 def root():
   return render_template("index.html")
 
-@app.route("/archive")
-def archive():
-  return "This is archive"
 
 @app.route("/report")
 def report():
@@ -44,8 +42,7 @@ def report():
     from_db = db.get(keyword)
     if from_db:
       time_stamp = from_db["time_stamp"]
-      #jobs_from_db = from_db["db_jobs"]
-      jobs = from_db["db_jobs"]
+      jobs = from_db["db_jobs"]["all_jobs"]
     else:
       time_stamp = get_time_stamp()
       jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
@@ -58,7 +55,7 @@ def report():
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
-  jobs=jobs["all_jobs"],
+  jobs=jobs,
   time_stamp=time_stamp
   )
 
@@ -98,6 +95,7 @@ def csv_exporter():
   else:
     return redirect("/")
 
+
 @app.route("/export-selection")
 def export_selection():
   keyword = request.args.get("keyword")
@@ -114,6 +112,43 @@ def export_selection():
   else:
     print("not")
     return redirect("/")
+
+
+@app.route("/update-db")
+def update_db():
+  keyword = request.args.get("keyword")
+  if keyword:
+    keyword = keyword.lower()
+    time_stamp = get_time_stamp()
+    jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+    db[keyword] = {
+        "time_stamp": time_stamp,
+        "db_jobs": jobs
+    }
+    job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs)
+    
+  else:
+    return redirect("/")
+  return render_template("export.html",
+    keyword=keyword,
+    time_stamp=time_stamp,
+    job_statistic=job_statistic,
+  )
+
+
+@app.route("/export-separately")
+def export_seperately():
+  keyword = request.args.get("keyword")
+  site = request.args.get("site")
+  time_stamp = request.args.get("time_stamp")
+    
+  from_db = labeled_db.get(site)
+  file = save_to_csv(jobs, f"{site}_{time_stamp}")
+  print(file)
+  return send_file(file)
+  #return redirect("/")
+  
+
 
 #os.system("pkill -9 python")
 app.run(host="0.0.0.0")

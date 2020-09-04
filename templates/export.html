@@ -21,10 +21,10 @@
           <h2 class="margin-immunity">Export Selections</h2>
         </div>    
         <div class="header__cluster-btn">
-          <button type="button" onclick="location.href='/report?keyword={{keyword}}'" class="btn btn-not-last"">
+          <button type="button" onclick="location.href='/report?keyword={{keyword}}'" class="btn btn-not-last btn-back">
             <i class="fas fa-arrow-left fa-lg btn-icon"></i>
           </button>
-          <button type="button" onclick="location.href='/'" class="btn btn-not-last"">
+          <button type="button" onclick="location.href='/'" class="btn btn-not-last btn-home">
             <i class="fas fa-home fa-lg btn-icon"></i>
           </button>
         </div>
@@ -40,7 +40,7 @@
                 <span>{{site}} [{{length}} jobs]</span>
               </div>
               <div class="center-element">
-                <button type="button" onclick="location.href='/export-all?keyword={{searchBy}}'" class="btn btn-not-last"">
+                <button type="button" onclick="location.href='/export-separately?keyword={{keyword}}&site={{site}}&time_stamp={{time_stamp}}'" class="btn btn-not-last btn-export">
                 <i class="fas fa-file-csv fa-lg btn-icon"></i>
                 <span>export to .csv</span>
                 </button>
@@ -54,7 +54,7 @@
           <span>updated at {{time_stamp}}</span>
         </div>
         <div class="center-element">
-          <button type="button" onclick="location.href='/update?keyword={{keyword}}'" class="btn">
+          <button type="button" onclick="location.href='/update-db?keyword={{keyword}}'" class="btn btn-update">
             <i class="fas fa-sync-alt btn-icon"></i>
             <span>Update DB</span>
           </button>

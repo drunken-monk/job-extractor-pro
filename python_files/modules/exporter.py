@@ -8,25 +8,26 @@ DIR_OUTPUT = "outputs"
 def analyze_jobs_by_site(jobs):
   job_statistic = {}
   labeled_jobs = {}
-  job_statistic["all"] = 0
   labeled_jobs["all"] = []
+  print(len(jobs))
   for job in jobs:
     source_site = job.get("site")
-    if source_site not in job_statistic:
-      job_statistic[source_site] = 1
+    if source_site not in labeled_jobs:
       labeled_jobs[source_site] = [job]
     else:
-      job_statistic[source_site] = job_statistic.get(source_site) + 1
-      job_statistic["all"] = job_statistic["all"] + 1
       labeled_jobs[source_site].append(job)
-      labeled_jobs["all"].append(job)
-  print(job_statistic)
+    labeled_jobs["all"].append(job)
+    
+  for key, val in labeled_jobs.items():
+    job_statistic[key] = len(val)
   return job_statistic, labeled_jobs
 
 
-def save_to_csv(jobs):
+def save_to_csv(jobs, file_name=None):
   if create_dir(DIR_OUTPUT):
-    dir_name = f"{DIR_OUTPUT}/{create_output_name()}.csv"
+    if file_name == None:
+      file_name = f"{create_output_name()}.csv"
+    dir_name = f"{DIR_OUTPUT}/{file_name}.csv"
     print(dir_name)
     file = open(f"{dir_name}", mode="w")
     writer = csv.writer(file)

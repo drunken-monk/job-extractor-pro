@@ -10,7 +10,7 @@ def get_so_pages(url):
 
 
 def extract_jobs_so(html_so):
-  SITE_NAME = "stack overflow"
+  SITE_NAME = "stack_overflow"
   title = html_so.find("h2").find("a")["title"]
   company, location = html_so.find("h3").find_all("span", recursive=False)
   company = company.get_text(strip=True)
