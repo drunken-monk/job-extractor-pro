@@ -42,7 +42,7 @@ def report():
     from_db = db.get(keyword)
     if from_db:
       time_stamp = from_db["time_stamp"]
-      jobs = from_db["db_jobs"]["all_jobs"]
+      jobs = from_db["db_jobs"]
     else:
       time_stamp = get_time_stamp()
       jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
@@ -55,7 +55,7 @@ def report():
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
-  jobs=jobs,
+  jobs=jobs["all_jobs"],
   time_stamp=time_stamp
   )
 
@@ -125,7 +125,7 @@ def update_db():
         "time_stamp": time_stamp,
         "db_jobs": jobs
     }
-    job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs)
+    job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs["all_jobs"])
     
   else:
     return redirect("/")
