@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, request, send_file
 from python_files.extractor.site_integration import get_jobs
 from python_files.modules.exporter import save_to_csv, analyze_jobs_by_site, get_time_stamp
 
-
 os.system("clear")
 
 DESIRE_PAGES = 1
@@ -25,8 +24,6 @@ def chk_keyword_in_db(keyword):
   except:
     return False
 
-
-#======================================
 app = Flask("Job-Extractor-Pro")
 
 @app.route("/")
@@ -68,9 +65,9 @@ def update():
     time_stamp = get_time_stamp()
     jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
     db[keyword] = {
-        "time_stamp": time_stamp,
-        "db_jobs": jobs
-      }
+      "time_stamp": time_stamp,
+      "db_jobs": jobs
+    }
     
   else:
     return redirect("/")
@@ -90,8 +87,7 @@ def csv_exporter():
     time_stamp = from_db["time_stamp"]
     jobs = from_db["db_jobs"]["all_jobs"]
     file = save_to_csv(jobs)
-    print(file)
-    #return send_file(file)
+
     return send_file(
       file,
       mimetype='text/csv',
@@ -111,14 +107,12 @@ def export_selection():
     jobs = from_db["db_jobs"]["all_jobs"]
     job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs)
 
-    print(labeled_db)
     return render_template("export.html",
     keyword=keyword,
     time_stamp=time_stamp,
     job_statistic=job_statistic,
   )
   else:
-    print("not")
     return redirect("/")
 
 
@@ -130,8 +124,8 @@ def update_db():
     time_stamp = get_time_stamp()
     jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
     db[keyword] = {
-        "time_stamp": time_stamp,
-        "db_jobs": jobs
+      "time_stamp": time_stamp,
+      "db_jobs": jobs
     }
     job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs["all_jobs"])
     
@@ -149,13 +143,9 @@ def export_seperately():
   keyword = request.args.get("keyword")
   site = request.args.get("site")
   time_stamp = request.args.get("time_stamp")
-  #print(site)labeled_db
-  #print(keyword)
-  #print(labeled_db)
+  
   jobs = labeled_db.get(keyword)[site]
-  print(labeled_db)
   file = save_to_csv(jobs, f"{site}_{time_stamp}")
-  #print(file)
 
   return send_file(
     file,
@@ -163,10 +153,5 @@ def export_seperately():
     attachment_filename=f"{site}_{time_stamp}.csv",
     as_attachment=True
   )
-  #return send_file(file)
-  #return redirect("/")
-  
 
-
-#os.system("pkill -9 python")
 app.run(host="0.0.0.0")

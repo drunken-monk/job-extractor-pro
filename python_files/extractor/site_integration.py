@@ -14,7 +14,5 @@ def get_jobs(keyword, sites, desire_pages = None):
     site_jobs = DICT_IDX_SITES[site_idx][1](keyword, desire_pages)
     jobs[DICT_IDX_SITES[site_idx][0]] = site_jobs
     jobs["all_jobs"] += site_jobs
-  #jobs.add(get_jobs_indeed(keyword, desire_pages))
-  #jobs.append(get_jobs_so(keyword, desire_pages))
   
   return jobs

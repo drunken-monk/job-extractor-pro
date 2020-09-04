@@ -9,7 +9,6 @@ def analyze_jobs_by_site(jobs):
   job_statistic = {}
   labeled_jobs = {}
   labeled_jobs["all"] = []
-  print(len(jobs))
   for job in jobs:
     source_site = job.get("site")
     if source_site not in labeled_jobs:
@@ -20,7 +19,6 @@ def analyze_jobs_by_site(jobs):
     
   for key, val in labeled_jobs.items():
     job_statistic[key] = len(val)
-  #print(labeled_jobs)
   return job_statistic, labeled_jobs
 
 

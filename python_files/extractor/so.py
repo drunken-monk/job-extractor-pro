@@ -18,7 +18,6 @@ def extract_jobs_so(html_so):
   job_id = html_so["data-jobid"]
   
   additionals = html_so.find_all("div", {"class":"fs-caption"})
-  
   salary = "not supported"
   
   return {
@@ -34,7 +33,7 @@ def extract_jobs_so(html_so):
 def extract_so_htmls(last_page, url):
   jobs_so = []
   for page in range(last_page):
-    print(f"=============== SO: {page+1}page ===============")
+    print(f"========== SO: {page+1}page ==========")
     response = requests.get(f"{url}&pg={page+1}")
     soup = BeautifulSoup(response.text, "html.parser")
     
