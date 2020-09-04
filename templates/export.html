@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job-Extractor-Pro</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/export.css') }}">
 </head>
 <body class="test">
   <div class="bg"></div>
@@ -16,8 +16,20 @@
 
   <div id="content" class="content">
     <main class="index__main">
-      <h1>Export Selections</h1>
-      <h3>select item want to export from result of {{keyword}}</h3>
+      <header class="report__header">
+        <div class="center-element">
+          <h2 class="margin-immunity">Export Selections</h2>
+        </div>    
+        <div class="header__cluster-btn">
+          <button type="button" onclick="location.href='/report?keyword={{keyword}}'" class="btn btn-not-last"">
+            <i class="fas fa-arrow-left fa-lg btn-icon"></i>
+          </button>
+          <button type="button" onclick="location.href='/'" class="btn btn-not-last"">
+            <i class="fas fa-home fa-lg btn-icon"></i>
+          </button>
+        </div>
+      </header>
+      <h3>select item want to export from result "{{keyword}}"</h3>
         <nav>
           <ul>
             {% for site, length in job_statistic.items() %}
