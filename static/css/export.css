@@ -199,7 +199,7 @@ section{
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
               inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
-
+/*
 .btn:last-child{
   background-color: rgba(119, 119, 119, 1);
 }
@@ -207,6 +207,7 @@ section{
 .btn:last-child:hover{
   background-color: rgba(69,68,67, 1);
 }
+*/
 
 .btn-not-last{
   margin-right: 8px;
@@ -230,7 +231,7 @@ nav{
   display: block;
   border-bottom: 1px solid white;
   padding-bottom: 25px;
-  width: 90%
+  width: 90%;
 }
 
 footer{
@@ -260,4 +261,8 @@ footer{
 
 .btn-back{
   background-color: rgba(119, 119, 119, 1);
+}
+
+.btn-options{
+  background-color: rgba(204, 24 ,30, 1);
 }

@@ -20,6 +20,7 @@ def analyze_jobs_by_site(jobs):
     
   for key, val in labeled_jobs.items():
     job_statistic[key] = len(val)
+  #print(labeled_jobs)
   return job_statistic, labeled_jobs
 
 
@@ -28,7 +29,6 @@ def save_to_csv(jobs, file_name=None):
     if file_name == None:
       file_name = f"{create_output_name()}.csv"
     dir_name = f"{DIR_OUTPUT}/{file_name}.csv"
-    print(dir_name)
     file = open(f"{dir_name}", mode="w")
     writer = csv.writer(file)
     writer.writerow(["site", "title", "company", "location", "salary", "link"])

@@ -91,7 +91,13 @@ def csv_exporter():
     jobs = from_db["db_jobs"]["all_jobs"]
     file = save_to_csv(jobs)
     print(file)
-    return send_file(file)
+    #return send_file(file)
+    return send_file(
+      file,
+      mimetype='text/csv',
+      attachment_filename=f"all_{time_stamp}.csv",
+      as_attachment=True
+    )
   else:
     return redirect("/")
 
@@ -104,6 +110,8 @@ def export_selection():
     time_stamp = from_db["time_stamp"]
     jobs = from_db["db_jobs"]["all_jobs"]
     job_statistic, labeled_db[keyword] = analyze_jobs_by_site(jobs)
+
+    print(labeled_db)
     return render_template("export.html",
     keyword=keyword,
     time_stamp=time_stamp,
@@ -141,11 +149,21 @@ def export_seperately():
   keyword = request.args.get("keyword")
   site = request.args.get("site")
   time_stamp = request.args.get("time_stamp")
-    
-  from_db = labeled_db.get(site)
+  #print(site)labeled_db
+  #print(keyword)
+  #print(labeled_db)
+  jobs = labeled_db.get(keyword)[site]
+  print(labeled_db)
   file = save_to_csv(jobs, f"{site}_{time_stamp}")
-  print(file)
-  return send_file(file)
+  #print(file)
+
+  return send_file(
+    file,
+    mimetype='text/csv',
+    attachment_filename=f"{site}_{time_stamp}.csv",
+    as_attachment=True
+  )
+  #return send_file(file)
   #return redirect("/")
   
 
