@@ -127,12 +127,6 @@ h3:not(.margin-immunity){
               inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
 
-.center-element{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .report__header{
   width: 100%;
   display: flex;
@@ -151,7 +145,7 @@ section{
 }
 
 .section__head{
-  border-bottom: 0.5px solid white;
+  border-bottom: 1px solid white;
   padding-bottom: 8px;
 }
 
@@ -200,6 +194,12 @@ section{
 .report__main{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.center-element{
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 

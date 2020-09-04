@@ -30,21 +30,36 @@
         </div>
       </header>
       <div class="subtitle">
-        <h3>select item want to export from result "{{keyword}}"</h3>
+        <h3 class="margin-immunity">select item want to export from result "{{keyword}}"</h3>
       </div>
-        <nav>
-          <ul>
-            {% for site, length in job_statistic.items() %}
-              <li class="export-item">
-                <span>{{site}}[{{length}} jobs]</span>
+      <nav>
+        <ul>
+          {% for site, length in job_statistic.items() %}
+            <li class="export-item">
+              <div class="center-element">
+                <span>{{site}} [{{length}} jobs]</span>
+              </div>
+              <div class="center-element">
                 <button type="button" onclick="location.href='/export-all?keyword={{searchBy}}'" class="btn btn-not-last"">
-                  <i class="fas fa-file-csv fa-lg btn-icon"></i>
-                  <span>export to .csv</span>
+                <i class="fas fa-file-csv fa-lg btn-icon"></i>
+                <span>export to .csv</span>
                 </button>
-              </li>
-            {% endfor %}
-          </ul>
-        </nav>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <footer>
+        <div class="center-element">
+          <span>updated at {{time_stamp}}</span>
+        </div>
+        <div class="center-element">
+          <button type="button" onclick="location.href='/update?keyword={{keyword}}'" class="btn">
+            <i class="fas fa-sync-alt btn-icon"></i>
+            <span>Update DB</span>
+          </button>
+        </div>
+      </footer>
     </main>
   </div>
   

@@ -30,14 +30,18 @@
             <span>export to .csv</span>
           </button>
           <button type="button" onclick="location.href='/export-selection?keyword={{searchBy}}'" class="btn">
-            <i class="fas fa-file-archive fa-lg btn-icon"></i>
-            <span>export to .zip</span>
+            <i class="fas fa-box-open fa-lg btn-icon"></i>
+            <span>export seperately</span>
           </button>
         </div>
       </header>
       <main class="report__main">
-        <h3>{{length}} results were searched with a keyword [{{searchBy}}]</h3>
-        <span>Scraped in {{time_stamp}}</span>
+        <div class="center-element">
+          <h3>{{length}} results were searched with a keyword "{{searchBy}}"</h3>
+        </div>
+        <div class="center-element">
+          <span>Scraped at {{time_stamp}}</span>
+        </div>
       </main>
       
       <section class="section__head">
