@@ -43,7 +43,7 @@ html {
   text-align:center;
   top:50%;
   transform:translate(-50%, -50%);
-  width: 65%
+  width: 55%
 }
 
 body{
@@ -129,7 +129,8 @@ h3{
 
 .export-item{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 7px 0px;
 }
 
 
@@ -139,6 +140,7 @@ h3{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .center-element{
@@ -221,7 +223,12 @@ section{
 }
 
 nav{
-  border-top: 0.5px solid white;
-  padding-top: 4px;
-  width: 60%;
+  width: 75%;
+}
+
+.subtitle{
+  display: block;
+  border-bottom: 1px solid white;
+  margin-bottom: 25px;
+  width: 90%
 }

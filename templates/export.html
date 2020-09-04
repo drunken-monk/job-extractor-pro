@@ -29,7 +29,9 @@
           </button>
         </div>
       </header>
-      <h3>select item want to export from result "{{keyword}}"</h3>
+      <div class="subtitle">
+        <h3>select item want to export from result "{{keyword}}"</h3>
+      </div>
         <nav>
           <ul>
             {% for site, length in job_statistic.items() %}
@@ -37,7 +39,7 @@
                 <span>{{site}}[{{length}} jobs]</span>
                 <button type="button" onclick="location.href='/export-all?keyword={{searchBy}}'" class="btn btn-not-last"">
                   <i class="fas fa-file-csv fa-lg btn-icon"></i>
-                  <span>export to {{site}}.csv</span>
+                  <span>export to .csv</span>
                 </button>
               </li>
             {% endfor %}

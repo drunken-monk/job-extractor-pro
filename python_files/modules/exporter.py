@@ -8,6 +8,8 @@ DIR_OUTPUT = "outputs"
 def analyze_jobs_by_site(jobs):
   job_statistic = {}
   labeled_jobs = {}
+  job_statistic["all"] = 0
+  labeled_jobs["all"] = []
   for job in jobs:
     source_site = job.get("site")
     if source_site not in job_statistic:
@@ -15,7 +17,9 @@ def analyze_jobs_by_site(jobs):
       labeled_jobs[source_site] = [job]
     else:
       job_statistic[source_site] = job_statistic.get(source_site) + 1
+      job_statistic["all"] = job_statistic["all"] + 1
       labeled_jobs[source_site].append(job)
+      labeled_jobs["all"].append(job)
   print(job_statistic)
   return job_statistic, labeled_jobs
 
