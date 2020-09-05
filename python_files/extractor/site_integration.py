@@ -1,10 +1,16 @@
-from python_files.extractor.indeed import get_jobs_indeed
 from python_files.extractor.so import get_jobs_so
+from python_files.extractor.wwr import get_jobs_wwr
+from python_files.extractor.remoteok import get_jobs_remoteok
+from python_files.extractor.indeed import get_jobs_indeed
+
 
 DICT_IDX_SITES = {
-  0: ["indeed", get_jobs_indeed],
-  1: ["stack overflow", get_jobs_so]
+  0: ["stack overflow", get_jobs_so],
+  1: ["wwr", get_jobs_wwr],
+  2: ["remoteok", get_jobs_remoteok],
+  3: ["indeed", get_jobs_indeed],
 }
+
 
 def get_jobs(keyword, sites, desire_pages = None):
   jobs = {
