@@ -37,7 +37,10 @@ def extract_remoteok_htmls(url):
 
   soup = BeautifulSoup(result.text, "html.parser")
   contents = soup.find("table", {"id": "jobsboard"})
-  items = contents.find_all("tr", {"class": "job"})
+  try:
+    items = contents.find_all("tr", {"class": "job"})
+  except:
+    return []
 
   for item in items:
     refined = extract_jobs_remoteok(item)

@@ -4,10 +4,12 @@ from bs4 import BeautifulSoup
 def get_so_pages(url):
   result = requests.get(url)
   soup = BeautifulSoup(result.text, "html.parser")
-  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
-  last_page = pages[-2].get_text(strip=True)
-  return int(last_page)
-
+  try:
+    pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+    last_page = pages[-2].get_text(strip=True)
+    return int(last_page)
+  except:
+    return None
 
 def extract_jobs_so(html_so):
   SITE_NAME = "stack_overflow"
@@ -36,8 +38,11 @@ def extract_so_htmls(last_page, url):
     print(f"========== SO: {page+1}page ==========")
     response = requests.get(f"{url}&pg={page+1}")
     soup = BeautifulSoup(response.text, "html.parser")
-    
-    results = soup.find_all("div", {"class": "-job"})
+    try:
+      results = soup.find_all("div", {"class": "-job"})
+    except:
+      return []
+      
     for result in results:
       job = extract_jobs_so(result)
       jobs_so.append(job)
@@ -45,8 +50,11 @@ def extract_so_htmls(last_page, url):
   return jobs_so
 
 
-def get_jobs_so(keyword, desire_pages = None):
-  url = f"https://stackoverflow.com/jobs?q={keyword}&sort=i"
+def get_jobs_so(keyword, desire_pages = None, is_remote = "true"):
+  url = f"https://stackoverflow.com/jobs?q={keyword}&sort=i&r={is_remote}"
   last_page = get_so_pages(url) if desire_pages is None else desire_pages
-  jobs_so = extract_so_htmls(last_page, url)
-  return jobs_so
+  if last_page != None:
+    jobs_so = extract_so_htmls(last_page, url)
+    return jobs_so
+  else:
+    return []

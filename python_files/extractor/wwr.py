@@ -34,8 +34,12 @@ def extract_wwr_htmls(url):
 
   response = requests.get(url)
   soup = BeautifulSoup(response.text, "html.parser")
-  contents = soup.find("div", {"id": "job_list"})
-  items = contents.find_all("li")
+
+  try:
+    contents = soup.find("div", {"id": "job_list"})
+    items = contents.find_all("li")
+  except:
+    return []
 
   for item in items:
     refined = extract_jobs_wwr(item)

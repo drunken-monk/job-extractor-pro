@@ -144,7 +144,7 @@ h3{
   color: #fff;
   text-shadow: 1px 1px 1px #000;
   border-radius: 10px;
-  background-color: rgba(200, 200, 200, 1);
+  background-color: rgba(217, 83, 79, 1);
   background-image: linear-gradient(to top left,
                                     rgba(0, 0, 0, .2),
                                     rgba(0, 0, 0, .2) 30%,
@@ -158,7 +158,7 @@ h3{
 }
 
 .btn:hover {
-  background-color: rgba(119, 119, 119, 1);
+  background-color: rgba(136, 2, 0, 1);
 }
 
 .btn:active {
