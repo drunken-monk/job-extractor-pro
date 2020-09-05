@@ -19,20 +19,24 @@
       <h1>Job Extractor Pro</h1>
       <h3>Please enter job keyword then click the button.</h3>
         <div>
-          <form action="/report" method="GET" class="index__box__form">
-            <input type="text" placeholder="Enter job keyword.." name="keyword"/>
-            <input type="submit" value="search" onclick="loading();"/>
+          <form action="/s-report" method="GET">
+            <div class="index__box__form">
+              <input type="text" placeholder="Enter job keyword.." name="keyword"/>
+              <input type="submit" value="search"/>
+            </div>
+            <footer>
+              <button type="submit" formaction="/report?keyword={{searchBy}}" class="btn btn-pro">
+                <i class="fab fa-product-hunt fa-lg btn-icon"></i>
+                <span>search with PRO mode</span>
+              </button>
+            </footer>
           </form>
+        </div>
         </div>
     </main>
   </div>
-  
-  <script type="text/javascript">// <![CDATA[
-           function loading(){
-               $("#loading").show();
-               //$("#content").hide();       
-           }
-// ]]></script>
+
+  <script src="https://kit.fontawesome.com/6145b85787.js" crossorigin="anonymous"></script>
   
 </body>
 </html>

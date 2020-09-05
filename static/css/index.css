@@ -125,3 +125,69 @@ h3{
   justify-content: center;
   align-items: center;
 }
+
+
+.btn{
+  font-size: 18px;
+}
+
+.btn-icon{
+  margin-right: 5px;
+}
+
+.btn {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: rgba(200, 200, 200, 1);
+  background-image: linear-gradient(to top left,
+                                    rgba(0, 0, 0, .2),
+                                    rgba(0, 0, 0, .2) 30%,
+                                    rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+              inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.btn-not-last{
+  margin-right: 8px;
+}
+
+.btn:hover {
+  background-color: rgba(119, 119, 119, 1);
+}
+
+.btn:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+              inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+
+
+.btn-update{
+  background-color: rgba(92, 184, 92, 1);
+}
+
+.btn-export {
+  background-color: rgba(200, 200, 200, 1);
+}
+
+.btn-home {
+  background-color: rgba(66, 139, 202, 1);
+}
+
+.btn-back{
+  background-color: rgba(119, 119, 119, 1);
+}
+
+.btn-pro{
+  background-color: rgba(217, 83, 79, 1);
+}
+
+footer{
+  margin-top: 30px;
+}

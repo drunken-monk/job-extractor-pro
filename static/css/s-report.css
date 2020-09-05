@@ -130,11 +130,6 @@ header{
   margin-bottom: 20px;
 }
 
-section{
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
-}
 
 .section__head{
   border-bottom: 1px solid white;
@@ -142,6 +137,8 @@ section{
 }
 
 .section__items{
+  display: flex;
+  flex-direction: column;
   padding-top: 8px;
   overflow: scroll;
   height: 63vh;
@@ -150,11 +147,17 @@ section{
 .last-column{
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
   margin: 0px 25px;
-  padding-bottom: 6px;
+  padding: 10px 15px;
   border-radius: 10px;
+  width: 250px;
   transition: transform 250ms ease-in-out, background-color 350ms ease-in-out, color 350ms ease-in-out, justify-content 2000ms ease-in-out
+}
+
+.apply-link{
+  margin-top: 20px;
 }
 
 .last-column:hover{
@@ -216,6 +219,37 @@ a {
   background-color: rgba(119, 119, 119, 1);
 }
 
-.btn-partly{
-  background-color: rgba(91, 192, 222, 1);
+.btn-pro{
+  background-color: rgba(217, 83, 79, 1);
+}
+
+
+.header__front{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+section{
+  display: flex;
+  justify-content: start;
+}
+
+.front-item__title{
+  margin-bottom: 20px;
+}
+
+.front-item{
+  border-bottom: 0.6px solid rgba(255, 255, 255, 0.25);
+  padding: 25px 0px;
+  width: 100%;
+}
+
+.inline-element{
+  display: inline;
+}
+
+strong{
+  font-weight: bold;
 }

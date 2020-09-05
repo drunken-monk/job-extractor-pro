@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job-Extractor-Pro</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/reset.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/report.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/s-report.css') }}">
 </head>
 <body>
   <div class="bg"></div>
@@ -16,7 +16,7 @@
     <div class="index__main">
       <header class="report__header">
         <div class="center-element">
-          <h2 class="margin-immunity">Extract Report</h2>
+          <h2 class="margin-immunity">Extract Report [simple mode]</h2>
         </div>    
         <div class="header__cluster-btn">
           <button type="button" onclick="location.href='/'" class="btn btn-not-last btn-home">
@@ -29,9 +29,9 @@
             <i class="fas fa-file-csv fa-lg btn-icon"></i>
             <span>export to .csv</span>
           </button>
-          <button type="button" onclick="location.href='/export-selection?keyword={{searchBy}}'" class="btn btn-partly">
-            <i class="fas fa-box-open fa-lg btn-icon"></i>
-            <span>export separately</span>
+          <button type="button" onclick="location.href='/report?keyword={{searchBy}}'" class="btn btn-pro">
+            <i class="fab fa-product-hunt fa-lg btn-icon"></i>
+            <span>view with PRO mode</span>
           </button>
         </div>
       </header>
@@ -43,24 +43,24 @@
           <span>Scraped at {{time_stamp}}</span>
         </div>
       </main>
-      
-      <section class="section__head">
-        <h4>Title</h4>
-        <h4>Company</h4>
-        <h4>Location</h4>
-        <h4>Salary</h4>
-        <h4>Link</h4>
-      </section>
       <section class="section__items scrollable-box">
-        {% for job in jobs %}
-          <span>{{job.title}}</span>
-          <span>{{job.company}}</span>
-          <span>{{job.location}}</span>
-          <span>{{job.salary}}</span>
-          <a href="{{job.link}}" target="_blank" class="last-column"><span>Apply<span></a>
-        {% endfor %}
-      </section>
-    
+      {% for job in jobs %}
+       
+        <div class="front-item">
+          <div class="front-item__title">
+            <h3 class="inline-element">{{job.title}}</h3>
+          </div>
+          <div class="front-item__meta">
+            <span><strong>{{job.company}}</strong><i> located in </i><strong>{{job.location}}</strong></span>
+            <span> | </span>
+            <span>[salary: {{job.salary}}]</span>
+            <div class="apply-link center-element">
+              <a href="{{job.link}}" target="_blank" class="last-column"><span>Apply with <i>{{job.site}}</i><span></a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
     </div>
   </div>
   <script src="https://kit.fontawesome.com/6145b85787.js" crossorigin="anonymous"></script>

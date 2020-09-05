@@ -5,7 +5,7 @@ from python_files.modules.exporter import save_to_csv, analyze_jobs_by_site, get
 
 os.system("clear")
 
-DESIRE_PAGES = 1
+DESIRE_PAGES = 2
 SELECTED_SITES = [0, 1]
 
 jobs = []
@@ -25,6 +25,7 @@ def chk_keyword_in_db(keyword):
     return False
 
 app = Flask("Job-Extractor-Pro")
+
 
 @app.route("/")
 def root():
@@ -50,6 +51,32 @@ def report():
   else:
     return redirect("/")
   return render_template("report.html", 
+  searchBy=keyword,
+  length=len(jobs["all_jobs"]),
+  jobs=jobs["all_jobs"],
+  time_stamp=time_stamp
+  )
+
+
+@app.route("/s-report")
+def s_report():
+  keyword = request.args.get("keyword")
+  if keyword:
+    keyword = keyword.lower()
+    from_db = db.get(keyword)
+    if from_db:
+      time_stamp = from_db["time_stamp"]
+      jobs = from_db["db_jobs"]
+    else:
+      time_stamp = get_time_stamp()
+      jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+      db[keyword] = {
+        "time_stamp": time_stamp,
+        "db_jobs": jobs
+      }
+  else:
+    return redirect("/")
+  return render_template("s-report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
   jobs=jobs["all_jobs"],
