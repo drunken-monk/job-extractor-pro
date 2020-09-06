@@ -99,14 +99,38 @@ def update():
       "time_stamp": time_stamp,
       "db_jobs": jobs
     }
-    
+    is_item = False if len(jobs["all_jobs"]) < 1 else True
   else:
     return redirect("/")
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
   jobs=jobs["all_jobs"],
-  time_stamp=time_stamp
+  time_stamp=time_stamp,
+  is_item=is_item
+  )
+
+
+@app.route("/s-update")
+def s_update():
+  keyword = request.args.get("keyword")
+  if keyword:
+    keyword = keyword.lower()
+    time_stamp = get_time_stamp()
+    jobs = get_jobs(keyword, SELECTED_SITES, DESIRE_PAGES)
+    db[keyword] = {
+      "time_stamp": time_stamp,
+      "db_jobs": jobs
+    }
+    is_item = False if len(jobs["all_jobs"]) < 1 else True
+  else:
+    return redirect("/")
+  return render_template("s-report.html", 
+  searchBy=keyword,
+  length=len(jobs["all_jobs"]),
+  jobs=jobs["all_jobs"],
+  time_stamp=time_stamp,
+  is_item=is_item
   )
 
 

@@ -53,8 +53,8 @@
         <h4>Salary</h4>
         <h4>Link</h4>
       </section>
+      {% if is_item == True %}
       <section class="section__items scrollable-box">
-        {% if is_item == True %}
         {% for job in jobs %}
           <span>{{job.title}}</span>
           <span>{{job.company}}</span>
@@ -62,15 +62,14 @@
           <span>{{job.salary}}</span>
           <a href="{{job.link}}" target="_blank" class="last-column"><span>Apply<span></a>
         {% endfor %}
-        {% else %}
-        <div class="center-element">
-          <h2>
-          No results corresponding to searched keyword
-          </h2>
-        </div>
-        {% endif %}
       </section>
-    
+      {% else %}
+      <div class="center-element">
+        <h2>
+          No results corresponding to searched keyword
+        </h2>
+      </div>
+      {% endif %}
     </div>
   </div>
   <script src="https://kit.fontawesome.com/6145b85787.js" crossorigin="anonymous"></script>
