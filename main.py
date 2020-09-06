@@ -122,7 +122,7 @@ def csv_exporter():
     return send_file(
       file,
       mimetype='text/csv',
-      attachment_filename=f"all_{time_stamp}.csv",
+      attachment_filename=f"all_{keyword}_{time_stamp}.csv",
       as_attachment=True,
       cache_timeout=0
     )
@@ -182,7 +182,7 @@ def export_seperately():
   return send_file(
     file,
     mimetype='text/csv',
-    attachment_filename=f"{site}_{time_stamp}.csv",
+    attachment_filename=f"{site}_{keyword}_{time_stamp}.csv",
     as_attachment=True,
     cache_timeout=0
   )
