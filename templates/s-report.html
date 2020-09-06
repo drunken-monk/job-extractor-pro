@@ -25,6 +25,7 @@
           <button type="button" onclick="location.href='/update?keyword={{searchBy}}'" class="btn btn-not-last btn-update">
             <i class="fas fa-sync-alt fa-lg btn-icon"></i>
           </button>
+          {% if is_item == True %}
           <button type="button" onclick="location.href='/export-all?keyword={{searchBy}}'" class="btn btn-not-last btn-export">
             <i class="fas fa-file-csv fa-lg btn-icon"></i>
             <span>export to .csv</span>
@@ -33,6 +34,7 @@
             <i class="fab fa-product-hunt fa-lg btn-icon"></i>
             <span>view with PRO mode</span>
           </button>
+          {% endif %}
         </div>
       </header>
       <main class="report__main">
@@ -44,8 +46,8 @@
         </div>
       </main>
       <section class="section__items scrollable-box">
-      {% for job in jobs %}
-       
+        {% if is_item == True %}
+        {% for job in jobs %}
         <div class="front-item">
           <div class="front-item__title">
             <h3 class="inline-element">{{job.title}}</h3>
@@ -60,6 +62,13 @@
           </div>
         </div>
       {% endfor %}
+      {% else %}
+      <div class="center-element">
+        <h2>
+          No results corresponding to searched keyword
+        </h2>
+      </div>
+      {% endif %}
     </section>
     </div>
   </div>

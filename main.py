@@ -48,13 +48,15 @@ def report():
         "time_stamp": time_stamp,
         "db_jobs": jobs
       }
+    is_item = False if len(jobs["all_jobs"]) < 1 else True
   else:
     return redirect("/")
   return render_template("report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
   jobs=jobs["all_jobs"],
-  time_stamp=time_stamp
+  time_stamp=time_stamp,
+  is_item=is_item
   )
 
 
@@ -74,13 +76,15 @@ def s_report():
         "time_stamp": time_stamp,
         "db_jobs": jobs
       }
+    is_item = False if len(jobs["all_jobs"]) < 1 else True
   else:
     return redirect("/")
   return render_template("s-report.html", 
   searchBy=keyword,
   length=len(jobs["all_jobs"]),
   jobs=jobs["all_jobs"],
-  time_stamp=time_stamp
+  time_stamp=time_stamp,
+  is_item=is_item
   )
 
 
@@ -119,7 +123,8 @@ def csv_exporter():
       file,
       mimetype='text/csv',
       attachment_filename=f"all_{time_stamp}.csv",
-      as_attachment=True
+      as_attachment=True,
+      cache_timeout=0
     )
   else:
     return redirect("/")
@@ -178,7 +183,8 @@ def export_seperately():
     file,
     mimetype='text/csv',
     attachment_filename=f"{site}_{time_stamp}.csv",
-    as_attachment=True
+    as_attachment=True,
+    cache_timeout=0
   )
 
 app.run(host="0.0.0.0")
