@@ -17,8 +17,13 @@ def get_jobs(keyword, sites, desire_pages = None):
     "all_jobs": []
   }
   for site_idx in sites:
-    site_jobs = DICT_IDX_SITES[site_idx][1](keyword, desire_pages)
-    jobs[DICT_IDX_SITES[site_idx][0]] = site_jobs
-    jobs["all_jobs"] += site_jobs
+    print(DICT_IDX_SITES[site_idx][0])
+    try:
+      site_jobs = DICT_IDX_SITES[site_idx][1](keyword, desire_pages)
+      jobs[DICT_IDX_SITES[site_idx][0]] = site_jobs
+      jobs["all_jobs"] += site_jobs
+    except:
+      print("error with " + DICT_IDX_SITES[site_idx][0])
+      pass
   
   return jobs
