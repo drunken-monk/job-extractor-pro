@@ -6,7 +6,7 @@ from python_files.modules.exporter import save_to_csv, analyze_jobs_by_site, get
 os.system("clear")
 
 DESIRE_PAGES = None
-SELECTED_SITES = [0, 1, 2]
+SELECTED_SITES = [0, 1, 2, 3]
 
 jobs = []
 db = {}
