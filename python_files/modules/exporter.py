@@ -27,7 +27,7 @@ def save_to_csv(jobs, file_name=None):
     if file_name == None:
       file_name = f"{create_output_name()}.csv"
     dir_name = f"{DIR_OUTPUT}/{file_name}.csv"
-    file = open(f"{dir_name}", mode="w")
+    file = open(f"{dir_name}", "w", -1, "utf-8")
     writer = csv.writer(file)
     writer.writerow(["site", "title", "company", "location", "salary", "link"])
     for job in jobs:
