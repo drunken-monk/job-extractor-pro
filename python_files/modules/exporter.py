@@ -1,4 +1,5 @@
 import os
+import shutil
 import csv
 import datetime
 import pytz
@@ -36,6 +37,7 @@ def save_to_csv(jobs, file_name=None):
 
 
 def create_dir(dir_name):
+  shutil.rmtree(dir_name)
   try:
     if not os.path.exists(dir_name):
       os.mkdir(dir_name)
