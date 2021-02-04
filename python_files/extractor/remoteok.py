@@ -33,8 +33,12 @@ def extract_jobs_remoteok(item):
 
 def extract_remoteok_htmls(url):
   jobs_remoteok = []
-  result = requests.get(url)
-
+  try:
+    session = requests.Session()
+    session.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
+    result = session.get(url)
+  except requests.exceptions.RequestException as e:
+    print(e)
   soup = BeautifulSoup(result.text, "html.parser")
   contents = soup.find("table", {"id": "jobsboard"})
   try:
